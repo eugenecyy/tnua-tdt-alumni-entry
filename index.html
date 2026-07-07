@@ -110,6 +110,10 @@
       font-size: 11px;
     }
 
+    .notice-text {
+      font-size: 13px;
+    }
+
     .actions {
       display: grid;
       gap: 8px;
@@ -173,7 +177,7 @@
       padding: 8px;
       background: #080808;
       color: #f6e9ff;
-      font-size: 10px;
+      font-size: 12px;
       overflow-wrap: anywhere;
       user-select: all;
     }
@@ -233,12 +237,12 @@
 
       <section id="normalNotice" class="card ok hidden">
         <h2>可以前往填寫</h2>
-        <p>你目前看起來不是在常見的 App 內建瀏覽器中。若仍無法開啟，請複製網址改用 Safari 或 Chrome。</p>
+        <p class="notice-text">你目前看起來不是在常見的 App 內建瀏覽器中。若仍無法開啟，請複製網址改用 Safari 或 Chrome。</p>
       </section>
 
       <section class="card">
         <h2>前往正式頁面</h2>
-        <p>正式資料庫網址如下。建議 iPhone 使用者用 Safari 或 Chrome 開啟，登入 Google 後再填寫或編輯資料。</p>
+        <p class="notice-text">正式資料庫網址如下。建議 iPhone 使用者用 Safari 或 Chrome 開啟，登入 Google 後再填寫或編輯資料。</p>
         <div class="actions two">
           <a class="button primary" id="openButton" href="https://sites.google.com/view/tnua-tdt-alumni" target="_blank" rel="noopener">開啟系友資料庫</a>
           <button class="purple" type="button" id="copyButton">複製正式網址</button>
