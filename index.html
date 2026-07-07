@@ -163,6 +163,13 @@
         0 10px 24px rgba(241, 93, 255, .18);
     }
 
+    .disabled-link {
+      border-color: rgba(255, 232, 138, .62) !important;
+      color: var(--required) !important;
+      background: linear-gradient(180deg, rgba(255, 232, 138, .16), rgba(255, 232, 138, .06)) !important;
+      cursor: not-allowed !important;
+    }
+
     .copy-row {
       display: grid;
       gap: 6px;
@@ -231,7 +238,7 @@
         <ol class="steps">
           <li>按右上角或右下角的「⋯」。</li>
           <li>選擇「在 Safari 開啟」或「在瀏覽器開啟」。</li>
-          <li>如果找不到這個選項，請先複製網址，再貼到 Safari 或 Chrome。</li>
+          <li>如果找不到這個選項，請按下方「複製正式網址」，再貼到 Safari 或 Chrome。</li>
         </ol>
       </section>
 
@@ -276,9 +283,18 @@
       const inAppNotice = document.getElementById('inAppNotice');
       const normalNotice = document.getElementById('normalNotice');
       const browserHint = document.getElementById('browserHint');
+      const openButton = document.getElementById('openButton');
 
       if (info.isInApp) {
         inAppNotice.classList.remove('hidden');
+        openButton.classList.add('disabled-link');
+        openButton.textContent = '請先複製網址，再用 Safari/Chrome 開啟';
+        openButton.removeAttribute('target');
+        openButton.setAttribute('aria-disabled', 'true');
+        openButton.addEventListener('click', function (event) {
+          event.preventDefault();
+          copyTargetUrl();
+        });
         if (info.isIOS) {
           browserHint.textContent = '目前偵測到你正在 iPhone 的 App 內建瀏覽器。這裡最容易卡住 Google 登入或顯示 undefined，請改用 Safari 或 Chrome。';
         }
