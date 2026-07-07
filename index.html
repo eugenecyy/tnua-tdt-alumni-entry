@@ -144,13 +144,13 @@
     }
 
     .primary {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: linear-gradient(180deg, rgba(65, 214, 255, .24), rgba(65, 214, 255, .08));
+      border-color: var(--ok);
+      color: #eaffef;
+      background: linear-gradient(180deg, rgba(115, 226, 139, .30), rgba(115, 226, 139, .10));
       box-shadow:
         inset 0 1px 0 rgba(255, 255, 255, .16),
         0 2px 0 rgba(0, 0, 0, .7),
-        0 10px 24px rgba(65, 214, 255, .18);
+        0 10px 24px rgba(115, 226, 139, .20);
     }
 
     .purple {
@@ -220,6 +220,10 @@
       .actions.two {
         grid-template-columns: 1fr 1fr;
       }
+
+      .actions.one {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -244,13 +248,13 @@
 
       <section id="normalNotice" class="card ok hidden">
         <h2>可以前往填寫</h2>
-        <p class="notice-text">你目前看起來不是在常見的 App 內建瀏覽器中。若仍無法開啟，請複製網址改用 Safari 或 Chrome。</p>
+        <p class="notice-text">請點選「開啟系友資料庫」。若仍無法開啟，請複製網址改用 Safari 或 Chrome。</p>
       </section>
 
       <section class="card">
         <h2>前往正式頁面</h2>
         <p class="notice-text">正式資料庫網址如下。建議 iPhone 使用者用 Safari 或 Chrome 開啟，登入 Google 後再填寫或編輯資料。</p>
-        <div class="actions two">
+        <div class="actions two" id="formalActions">
           <a class="button primary" id="openButton" href="https://sites.google.com/view/tnua-tdt-alumni" target="_blank" rel="noopener">開啟系友資料庫</a>
           <button class="purple" type="button" id="copyButton">複製正式網址</button>
         </div>
@@ -284,17 +288,13 @@
       const normalNotice = document.getElementById('normalNotice');
       const browserHint = document.getElementById('browserHint');
       const openButton = document.getElementById('openButton');
+      const formalActions = document.getElementById('formalActions');
 
       if (info.isInApp) {
         inAppNotice.classList.remove('hidden');
-        openButton.classList.add('disabled-link');
-        openButton.textContent = '請先複製網址，再用 Safari/Chrome 開啟';
-        openButton.removeAttribute('target');
-        openButton.setAttribute('aria-disabled', 'true');
-        openButton.addEventListener('click', function (event) {
-          event.preventDefault();
-          copyTargetUrl();
-        });
+        openButton.classList.add('hidden');
+        formalActions.classList.remove('two');
+        formalActions.classList.add('one');
         if (info.isIOS) {
           browserHint.textContent = '目前偵測到你正在 iPhone 的 App 內建瀏覽器。這裡最容易卡住 Google 登入或顯示 undefined，請改用 Safari 或 Chrome。';
         }
